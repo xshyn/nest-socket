@@ -1,0 +1,25 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { EventsGateway } from './events.gateway.js';
+
+describe('EventsGateway', () => {
+  let gateway: EventsGateway;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [EventsGateway],
+    }).compile();
+
+    gateway = module.get<EventsGateway>(EventsGateway);
+  });
+
+  it('should be defined', () => {
+    expect(gateway).toBeDefined();
+  });
+
+  describe('message', () => {
+    it('should return the message', () => {
+      const message = 'message';
+      expect(gateway.message(message)).toBe(message);
+    });
+  });
+});
